@@ -20,7 +20,7 @@ An application that lets you record your sleeping time and share it with you fri
 * /clockin (POST)
 * /clockout (POST)
 * [/users (GET)](API_DOC.md#get-users)
-* [/users/:user_id (GET)](API_DOC.md#get-users-id)
+* [/users/:user_id (GET)](API_DOC.md#get-usersid)
 * /users/:user_id/follows (GET, POST)
 * /users/:user_id/followers (GET)
 * /follows/:follow_id (DELETE)
@@ -63,3 +63,11 @@ rails new good-night-api --api-only --skip-bundle
 * Add rubocop (cuz i like coding standards)
 
 * Add model, migration, rspec-model for [:users, :sleeps, :follows]
+
+* Add controller, rspec-request for :users
+
+* Add authentication for GET/users, GET /users/:id
+    - add seed_fu gem and Seed 7 users for authentication testing.
+    - add simple `authenticate!` with no encyption. (Could implemnt JWT later)
+    - add rspec's `ShareExampleHelper`, `Request::AuthenticationHelper`
+    - add rspec test cases with error message

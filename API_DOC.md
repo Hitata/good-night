@@ -10,6 +10,7 @@
 ```
 curl -X GET \
   http://localhost:3000/api/v1/users \
+  -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
   -H 'Content-Type: application/json'
 ```
 
@@ -33,6 +34,7 @@ curl -X GET \
 ```
 curl -X GET \
   http://localhost:3000/api/v1/users/1 \
+  -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
   -H 'Content-Type: application/json'
 ```
 

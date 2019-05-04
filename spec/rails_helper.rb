@@ -35,7 +35,8 @@ Dir[File.dirname(__FILE__) + '/support/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  config.include Requests::JsonHelpers, type: :request
+  config.include Request::JsonHelper, type: :request
+  config.include Request::AuthenticationHelper, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

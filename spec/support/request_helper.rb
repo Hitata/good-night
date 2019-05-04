@@ -1,5 +1,5 @@
-module Requests
-  module JsonHelpers
+module Request
+  module JsonHelper
     def body
       JSON.parse(subject.body, symbolize_names: true)
     end
@@ -10,6 +10,13 @@ module Requests
 
     def error
       body[:error]
+    end
+  end
+
+  module AuthenticationHelper
+    def authenticate_with(token)
+      headers = {'Content-Type': 'application/json'}
+      headers.merge('Authorization': "Token #{token}")
     end
   end
 end

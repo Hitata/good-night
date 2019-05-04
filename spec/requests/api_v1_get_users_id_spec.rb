@@ -2,17 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'User API', type: :request do
   describe 'GET /v1/users/:id' do
+    let(:current_user) { create :user }
     let(:user) { create :user }
-    let(:path) { '/api/v1/users' }
+    let(:user_id) { user.id.to_s }
+    let(:path) { '/api/v1/users/' + user_id }
 
-    subject do
-      get path + '/' + user_id.to_s
-      response
-    end
+    include_context :subject_get
 
     describe 'Response successful' do
       context 'with correct :user_id' do
-        let(:user_id) { user.id }
+        let(:headers) { authenticate_with(current_user.auth) }
         it { is_expected.to have_http_status(:ok) }
         it do
           expect(data).to include_json(
@@ -26,8 +25,11 @@ RSpec.describe 'User API', type: :request do
     end
 
     describe 'Response error' do
+      include_examples :unauthorized
+
       context 'with not existing :user_id' do
-        let(:user_id) { 999 }
+        let(:headers) { authenticate_with(current_user.auth) }
+        let(:user_id) { 999.to_s }
         it { is_expected.to have_http_status(:not_found) }
         it do
           expect(error).to include_json(
@@ -36,8 +38,6 @@ RSpec.describe 'User API', type: :request do
           )
         end
       end
-
-      # TODO: authentication error
     end
   end
 end
