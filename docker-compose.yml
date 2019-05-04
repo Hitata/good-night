@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.3-alpine
+    volumes:
+      - store:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "goodnight-server_development"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "changeme"
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api.Dockerfile
+    image: goodnight-api
+    entrypoint: ./docker/api-entry.sh
+    command: bin/rails s -b 0.0.0.0 -p 3000
+    links:
+      - db
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - 3000:3000
+    env_file:
+     - ./docker/api.env
+    environment:
+      RAILS_ENV: development
+    stdin_open: true
+    tty: true
+
+volumes:
+  store:
+    driver: local
+  bundle:
+    driver: local
+
