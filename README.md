@@ -57,6 +57,6 @@ rails new good-night-api --api-only --skip-bundle
 
 * Add User Stories & API endpoints from specfication
 
-* Add Rspec & related gems
+* Add Rspec & TDD related gems
 
 * Add rubocop (cuz i like coding standards)
