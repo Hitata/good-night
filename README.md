@@ -24,7 +24,7 @@ An application that lets you record your sleeping time and share it with you fri
 * /users/:user_id/followers (GET)
 * /follows/:follow_id (DELETE)
 
-# Database
+## Database
 * users :id, :name, :auth
 * sleeps :id, :user_id, :date, :clockin_at, :clockout_at
 * follows :id, :from_user_id, :to_user_id
@@ -60,3 +60,5 @@ rails new good-night-api --api-only --skip-bundle
 * Add Rspec & TDD related gems
 
 * Add rubocop (cuz i like coding standards)
+
+* Add model, migration, rspec-model for [:users, :sleeps, :follows]
