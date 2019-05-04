@@ -52,7 +52,11 @@ rails server -p 3000
 rails new good-night-api --api-only --skip-bundle
 ```
 
-* Added docker-composer & dockerfiles
+* Add docker-composer & dockerfiles
     - db usage change to postgres
 
-* Added User Stories & API endpoints from specfication
+* Add User Stories & API endpoints from specfication
+
+* Add Rspec & related gems
+
+* Add rubocop (cuz i like coding standards)

@@ -1,0 +1,116 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+  Exclude:
+    - Gemfile
+    - db/fixtures/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - 'app/view/**/*.erb'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+
+AccessorMethodName:
+  Enabled: false
+
+# Disable "Please use Rails.root.join('path', 'to') instead."
+Rails/FilePath:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Layout/TrailingBlankLines:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+
+# no need _ until 10000
+Style/NumericLiterals:
+  MinDigits: 6
+
+# %w, %W
+Style/WordArray:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+Style/Alias:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+# postposition rescue
+Style/RescueModifier:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false # default is 15
+
+Metrics/BlockLength:
+  Enabled: false # default is 25
+
+Metrics/ClassLength:
+  Enabled: false # default is 100
+
+Metrics/ModuleLength:
+  Enabled: false # default is 100
+
+Metrics/CyclomaticComplexity:
+  Enabled: false # default is 6
+
+Metrics/LineLength:
+  Enabled: false # default is 80
+
+Metrics/MethodLength:
+  Enabled: false # default is 10
+
+Metrics/ParameterLists:
+  Enabled: false # default is 5
+
+Metrics/PerceivedComplexity:
+  Enabled: false # default is 7
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - test
+    - development
