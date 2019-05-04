@@ -1,23 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
+  subject(:user) { build(:user) }
+
   it 'is valid with name and auth' do
-    expect(user).to be_valid
+    is_expected.to be_valid
+  end
+
+  context 'has association' do
+    it 'of has_many follows' do
+      is_expected.to have_many(:follows)
+    end
+    it 'of has_many followings' do
+      is_expected.to have_many(:followings)
+    end
   end
 
   context 'has validations' do
+    it 'of presence: name' do
+      is_expected.to validate_presence_of(:name)
+    end
+    it 'of presence: auth' do
+      is_expected.to validate_presence_of(:auth)
+    end
     it 'of uniqueness: name' do
-      expect(user).to validate_uniqueness_of(:name)
+      is_expected.to validate_uniqueness_of(:name)
     end
     it 'of uniqueness: auth' do
-      expect(user).to validate_uniqueness_of(:auth)
+      is_expected.to validate_uniqueness_of(:auth)
     end
   end
 
   context 'has table indexes' do
     it 'of auth' do
-      expect(user).to have_db_index(:auth)
+      is_expected.to have_db_index(:auth)
     end
   end
 end
