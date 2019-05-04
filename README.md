@@ -2,6 +2,7 @@
 
 ## Description
 An application that lets you record your sleeping time and share it with you friends.
+[API Documentation](API_DOC.md)
 
 ## User Stories (How a user uses Good night app)
 * As a user I can login by inputing my name
@@ -18,8 +19,8 @@ An application that lets you record your sleeping time and share it with you fri
 * /logout (POST)
 * /clockin (POST)
 * /clockout (POST)
-* /users (GET)
-* /users/:user_id (GET)
+* [/users (GET)](API_DOC.md#get-users)
+* [/users/:user_id (GET)](API_DOC.md#get-users-id)
 * /users/:user_id/follows (GET, POST)
 * /users/:user_id/followers (GET)
 * /follows/:follow_id (DELETE)
