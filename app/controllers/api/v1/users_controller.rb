@@ -3,7 +3,8 @@ class Api::V1::UsersController < ApplicationController
   def index
     @users =
       User
-      .where.not(id: @current_user)
+      .left_join_followed_by_me(@current_user)
+      .where.not(id: @current_user.id)
       .order(created_at: :desc)
   end
 

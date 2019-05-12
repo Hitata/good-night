@@ -32,6 +32,48 @@ An application that lets you record your sleeping time and share it with you fri
 * sleeps :id, :user_id, :date, :clockin_at, :clockout_at
 * follows :id, :from_user_id, :to_user_id
 
+## Sample of Frontend screen usage of API endpoint
+* login screen:
+    - Input name field and press enter
+        + call GET /auth?name=Trung
+            + save current_user: [id, name, auth] from response to localstorage
+            + Go to current_user dashboard screen
+* My dashboard screen
+    - Display
+        + GET /users/:id with id as param, auth as header from localstorage
+* User list screen
+    - Display
+        + GET /users
+            + each user's followed_by_me_id is null `follow` button else `unfollow`
+    - Click follow button on each users
+        + POST /users/:id/follows with id from corresponding user and header from localstorage
+        + save follow_id from response to localstorage
+    - Click unfollow button on each users 
+        + DELETE /follows/:id with followed_by_me_id from corresponding
+
+* My Follows screen
+    - Display
+        + GET /users/:user_id/follows with id, auth from localstorage
+    - Click on each follows
+        + GET /users/:id with id from corresponding follow.to_user.id
+        + Go to Friend screen
+
+* Friend screen
+    - Display
+        + GET /users/:id with id from corresponding follow.to_user.id
+            + show `last_week_sleeps` with graph x-axis: date, y-axis: sleep_time
+        + GET /users/:id/last_week_order_sleep_time with id from corresponding follow.to_user.id
+            + show list order by sleep_time
+
+* Clockin screen
+    - Display a "Clockin" button
+    - Click on button
+        + POST /sleeps/clockin
+        + save current_clockin_time: [id, checkin_at] from response to localstorage
+        + "Clockin" button change to "Clockout" button
+    - Click on "Clockout" button
+        + POST /sleeps/:id/clockout from localstorage (saved above)
+
 ## Setup
 ### Docker way
 * Run docker-composer to setup db & api services
@@ -42,7 +84,7 @@ docker-composer up
 ### Normal way
 * Check ruby version `2.4.1` & rails version `5.2.0`
 * have db postgre install with version `10.3`
-    - or use db sqlite by using `database.sqlite.yml`
+    - ~or use db sqlite by using `database.sqlite.yml`~
 * Run commands
 ```
 bundle install
@@ -108,47 +150,8 @@ rails new good-night-api --api-only --skip-bundle
 
 * Add sample frontend screen usage
 
-## Sample of Frontend screen usage of API endpoint
-* login screen:
-    - Input name field and press enter
-        + call GET /auth?name=Trung
-            + save current_user: [id, name, auth] from response to localstorage
-            + Go to current_user dashboard screen
-* My dashboard screen
-    - Display
-        + GET /users/:id with id as param, auth as header from localstorage
-* User list screen
-    - Display
-        + GET /users
-            + each user's followed_by_me_id is null `follow` button else `unfollow`
-    - Click follow button on each users
-        + POST /users/:id/follows with id from corresponding user and header from localstorage
-        + save follow_id from response to localstorage
-    - Click unfollow button on each users 
-        + DELETE /follows/:id with followed_by_me_id from corresponding
-
-* My Follows screen
-    - Display
-        + GET /users/:user_id/follows with id, auth from localstorage
-    - Click on each follows
-        + GET /users/:id with id from corresponding follow.to_user.id
-        + Go to Friend screen
-
-* Friend screen
-    - Display
-        + GET /users/:id with id from corresponding follow.to_user.id
-            + show `last_week_sleeps` with graph x-axis: date, y-axis: sleep_time
-        + GET /users/:id/last_week_order_sleep_time with id from corresponding follow.to_user.id
-            + show list order by sleep_time
-
-* Clockin screen
-    - Display a "Clockin" button
-    - Click on button
-        + POST /sleeps/clockin
-        + save current_clockin_time: [id, checkin_at] from response to localstorage
-        + "Clockin" button change to "Clockout" button
-    - Click on "Clockout" button
-        + POST /sleeps/:id/clockout from localstorage (saved above)
+* Add left_join_followed_by_me to GET /users
+    - for giving follow_id for `unfollow` feature
 
 ## Todo
 - Add time_zone to user.
