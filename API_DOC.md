@@ -2,8 +2,50 @@
 
 ## User Endpoints
 ### Overview
-* GET /users
-* GET /users/:id
+* [GET /auth](API_DOC.md#get-auth)
+* [GET /users](API_DOC.md#get-users)
+* [GET /users/:id](API_DOC.md#get-usersid)
+
+### GET /auth
+#### request
+```
+curl -X GET \
+  'http://localhost:3000/api/v1/auth?name=Trung' \
+  -H 'Content-Type: application/json'
+```
+
+#### Response Successful
+```
+{
+    "data": {
+        "id": 2,
+        "name": "Trung",
+        "auth": "78eb7a778cd3e070d90d"
+    }
+}
+```
+- Use data[:auth] field to use as authorization in header to access other APIs
+
+#### Response Error
+Missing paramter
+```
+{
+    "error": {
+        "message": "param is missing or the value is empty: name",
+        "status": 400
+    }
+}
+```
+
+User doesn't exist
+```
+{
+    "error": {
+        "message": "User with name: 'Trungs' doesn't exist",
+        "status": 401
+    }
+}
+```
 
 ### GET /users
 #### request

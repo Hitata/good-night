@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate!
+  before_action :authenticate!, except: %i[auth]
+
+  # For login with name
+  def auth
+  end
 
   # A simple authentication
   def authenticate!
@@ -10,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     error_message(e.message, :not_found)
+  end
+
+  rescue_from(ActionController::ParameterMissing) do |e|
+    error_message(e.message, :bad_request)
   end
 
   private

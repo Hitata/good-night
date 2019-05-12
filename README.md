@@ -15,8 +15,7 @@ An application that lets you record your sleeping time and share it with you fri
 * As a user I can see my friend's (user I follow) sleep records in past week.
 
 ## API Endpoints
-* /login (POST)
-* /logout (POST)
+* [/auth (GET)](API_DOC.md#get-auth)
 * /clockin (POST)
 * /clockout (POST)
 * [/users (GET)](API_DOC.md#get-users)
