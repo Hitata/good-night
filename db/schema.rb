@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_05_04_104234) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "follows", force: :cascade do |t|
-    t.integer "from_user_id", null: false
-    t.integer "to_user_id", null: false
+    t.bigint "from_user_id", null: false
+    t.bigint "to_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["from_user_id", "to_user_id"], name: "index_follows_on_from_user_id_and_to_user_id", unique: true
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_04_104234) do
   end
 
   create_table "sleeps", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.date "date", null: false
     t.datetime "clockin_at"
     t.datetime "clockout_at"
@@ -41,4 +44,6 @@ ActiveRecord::Schema.define(version: 2019_05_04_104234) do
     t.index ["auth"], name: "index_users_on_auth", unique: true
   end
 
+  add_foreign_key "follows", "users", column: "from_user_id"
+  add_foreign_key "follows", "users", column: "to_user_id"
 end
