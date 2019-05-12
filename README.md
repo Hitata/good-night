@@ -23,7 +23,6 @@ An application that lets you record your sleeping time and share it with you fri
 * [/users/:user_id/follows (POST)](API_DOC.md#post-usersidfollows)
 * [/users/:user_id/follows (GET)](API_DOC.md#get-usersidfollows)
 * [/users/:user_id/followers (GET)](API_DOC.md#get-usersidfollowers)
-* /users/:user_id/follows (POST)
 * /follows/:follow_id (DELETE)
 
 ## Database

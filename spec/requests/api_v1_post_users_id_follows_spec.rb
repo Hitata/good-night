@@ -12,7 +12,7 @@ RSpec.describe 'Follows API', type: :request do
     describe 'Response successful' do
       context 'with correct :user_id' do
         let(:headers) { authenticate_with(current_user.auth) }
-        it { is_expected.to have_http_status(:created) }
+        it { is_expected.to have_http_status(:ok) }
         it do
           expect(data).to include_json(
             id: follow.reload.id,

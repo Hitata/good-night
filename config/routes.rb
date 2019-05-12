@@ -15,6 +15,7 @@ Rails.application.routes.draw do
           get :clockout
         end
       end
+      resources :follows, only: %i[destroy]
     end
   end
 end
