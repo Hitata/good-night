@@ -7,6 +7,7 @@ Rails.application.routes.draw do
           get :follows, action: :follows
           post :follows, action: :post_follows
           get :followers
+          get :last_week_order_sleep_time, action: :last_week_order_sleep_time
         end
       end
       resources :sleeps, only: %i[] do

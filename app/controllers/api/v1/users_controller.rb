@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :get_user, only: %i[show follows followers post_follows]
+  before_action :get_user, only: %i[show follows followers post_follows last_week_order_sleep_time]
   def index
     @users =
       User
@@ -11,7 +11,11 @@ class Api::V1::UsersController < ApplicationController
     today = Date.current
     one_week_ago = 1.week.ago(today)
     @one_week_dates = (one_week_ago..today).map(&:to_s)
-    @last_week_sleeps = sleep_to_hash(@user.sleeps.group_by_and_from_date(one_week_ago))
+    @last_week_sleeps = sleep_to_hash(@user.sleeps.from_date(one_week_ago))
+  end
+
+  def last_week_order_sleep_time
+    @last_week_sleeps = @user.sleeps.from_date_order_by_sleep_time(1.week.ago)
   end
 
   def post_follows
