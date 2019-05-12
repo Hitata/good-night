@@ -16,8 +16,8 @@ An application that lets you record your sleeping time and share it with you fri
 
 ## API Endpoints
 * [/auth (GET)](API_DOC.md#get-auth)
-* /sleeps/clockin (GET)
-* /sleeps/clockout (GET)
+* [/sleeps/clockin (GET)](API_DOC.md#get-sleepsclockin)
+* [/sleeps/clockout (GET)](API_DOC.md#get-sleepsclockout)
 * [/users (GET)](API_DOC.md#get-users)
 * [/users/:user_id (GET)](API_DOC.md#get-usersid)
 * /users/:user_id/follows (GET, POST)
@@ -72,8 +72,10 @@ rails new good-night-api --api-only --skip-bundle
     - add rspec test cases with error message
 
 * Add login with GET /auth
+    - add 2 error cases: no parameter name, user doesnt exists
 
 * Add GET /sleeps/clockin & GET /sleeps/clockout
+    - add error cases: already checkin or checkout
 
 ## Todo
 - Add time_zone to user.
