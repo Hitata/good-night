@@ -15,6 +15,13 @@ module ShareExampleHelper
     end
   end
 
+  shared_context :subject_delete do
+    subject do
+      delete path, headers: headers
+      response
+    end
+  end
+
   shared_examples :unauthorized do
     context 'with no headers' do
       it { is_expected.to have_http_status(:unauthorized) }

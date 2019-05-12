@@ -10,6 +10,7 @@
 * [GET /users/:user_id/followers](API_DOC.md#get-usersidfollowers)
 * [GET /sleeps/clockin](API_DOC.md#get-sleepsclockin)
 * [GET /sleeps/clockout](API_DOC.md#get-sleepsclockout)
+* [DELETE /follows/:id](API_DOC.md#delete-followsid)
 
 ### GET /auth
 #### request
@@ -247,5 +248,47 @@ curl -X GET \
             }
         }
     ]
+}
+```
+
+## DELETE /follows/:id
+```
+curl -X DELETE \
+  http://localhost:3000/api/v1/follows/7 \
+  -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+```
+
+### Response Successful
+```
+{
+    "data": {
+        "message": "Unfollowed successful",
+        "id": 7,
+        "to_user": {
+            "id": 4,
+            "name": "Brian"
+        }
+    }
+}
+```
+
+### Response error
+```
+{
+    "error": {
+        "message": "Couldn't find Follow with 'id'=10",
+        "status": 404
+    }
+}
+```
+
+Not allowed operation
+```
+{
+    "error": {
+        "message": "Not allowed doing this operation",
+        "status": 422
+    }
 }
 ```

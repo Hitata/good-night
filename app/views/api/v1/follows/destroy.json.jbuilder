@@ -1,4 +1,8 @@
 json.data do
-  json.extract! @current_user, :id, :name
-  json.message 'Unfollowed succesful'
+  json.message 'Unfollowed successful'
+  json.id @follow.id
+  json.to_user do
+    json.id @follow.to_user.id
+    json.name @follow.to_user.name
+  end
 end
