@@ -11,10 +11,8 @@ Rails.application.routes.draw do
         end
       end
       resources :sleeps, only: %i[] do
-        collection do
-          get :clockin
-          get :clockout
-        end
+        post :clockin, on: :collection
+        post :clockout, on: :member
       end
       resources :follows, only: %i[destroy]
     end

@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Sleeps clockin API', type: :request do
-  describe 'GET /v1/sleeps/clockin' do
+  describe 'POST /v1/sleeps/clockin' do
     let!(:current_user) { create :user }
     let(:sleep) { current_user.sleeps.first }
     let(:path) { '/api/v1/sleeps/clockin' }
 
-    include_context :subject_get
+    include_context :subject_post
 
     describe 'Response successful' do
       context 'with correct authorization' do
@@ -14,6 +14,7 @@ RSpec.describe 'Sleeps clockin API', type: :request do
         it { is_expected.to have_http_status(:ok) }
         it do
           expect(data).to include_json(
+            id: sleep.reload.id,
             date: sleep.reload.date.as_json,
             clockin_at: sleep.reload.clockin_at.as_json,
             clockout_at: nil

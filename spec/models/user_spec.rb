@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
       is_expected.to have_many(:follows)
     end
     it 'of has_many followings' do
-      is_expected.to have_many(:followings)
+      is_expected.to have_many(:followers)
     end
   end
 

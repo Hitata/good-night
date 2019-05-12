@@ -5,12 +5,12 @@
 * [GET /auth](API_DOC.md#get-auth)
 * [GET /users](API_DOC.md#get-users)
 * [GET /users/:id](API_DOC.md#get-usersid)
-* [GET /users/:id/last_week_order_sleep_time](API_DOC.md#get-usersidlastweekordersleeptime)
+* [GET /users/:id/last_week_order_sleep_time](API_DOC.md#get-usersidlast_week_order_sleep_time)
 * [POST /users/:user_id/follows](API_DOC.md#post-usersidfollows)
 * [GET /users/:user_id/follows](API_DOC.md#get-usersidfollows)
 * [GET /users/:user_id/followers](API_DOC.md#get-usersidfollowers)
-* [GET /sleeps/clockin](API_DOC.md#get-sleepsclockin)
-* [GET /sleeps/clockout](API_DOC.md#get-sleepsclockout)
+* [POST /sleeps/clockin](API_DOC.md#post-sleepsclockin)
+* [POST /sleeps/:id/clockout](API_DOC.md#post-sleepsidclockout)
 * [DELETE /follows/:id](API_DOC.md#delete-followsid)
 
 ### GET /auth
@@ -233,9 +233,9 @@ curl -X GET \
 }
 ```
 
-## GET /sleeps/clockin
+## POST /sleeps/clockin
 ```
-curl -X GET \
+curl -X POST \
   http://localhost:3000/api/v1/sleeps/clockin \
   -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -245,11 +245,12 @@ curl -X GET \
 ```
 {
     "data": {
+        "id": 16,
         "date": "2019-05-12",
-        "clockin_at": "2019-05-12T07:55:47.283Z",
+        "clockin_at": "2019-05-12T15:02:48.835Z",
         "clockout_at": null,
-        "created_at": "2019-05-12T07:55:47.298Z",
-        "updated_at": "2019-05-12T07:55:47.298Z"
+        "created_at": "2019-05-12T15:02:48.848Z",
+        "updated_at": "2019-05-12T15:02:48.848Z"
     }
 }
 ```
@@ -264,10 +265,10 @@ curl -X GET \
 }
 ```
 
-## GET /sleeps/clockout
+## POST /sleeps/:id/clockout
 ```
-curl -X GET \
-  http://localhost:3000/api/v1/sleeps/clockout \
+curl -X POST \
+  http://localhost:3000/api/v1/sleeps/:id/clockout \
   -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
 ```
@@ -276,6 +277,7 @@ curl -X GET \
 ```
 {
     "data": {
+        "id": 16,
         "date": "2019-05-12",
         "clockin_at": "2019-05-12T07:56:29.103Z",
         "clockout_at": "2019-05-12T07:56:59.712Z",
@@ -290,6 +292,25 @@ curl -X GET \
 {
     "error": {
         "message": "Already clocked out at: 2019-05-12 07:56:59 UTC",
+        "status": 422
+    }
+}
+```
+
+```
+{
+    "error": {
+        "message": "Couldn't find Sleep with 'id'=1000",
+        "status": 404
+    }
+}
+```
+
+Not allowed operation
+```
+{
+    "error": {
+        "message": "Not allowed doing this operation",
         "status": 422
     }
 }

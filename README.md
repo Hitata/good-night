@@ -13,15 +13,15 @@ An application that lets you record your sleeping time and share it with you fri
 * As a user I can see all user that I'm following.
 * As a user I can see all user that follows me (my followers).
 * As a user I can see my friend's (user I follow) sleep records in past week. [link](API_DOC.md#get-usersid)
-* As a user I can see my friend's sleep records past week order by sleep_time [link](API_DOC.md#get-usersidlastweekordersleeptime)
+* As a user I can see my friend's sleep records past week order by sleep_time [link](API_DOC.md#get-usersidlast_week_order_sleep_time)
 
 ## API Endpoints
 * [/auth (GET)](API_DOC.md#get-auth)
 * [/sleeps/clockin (GET)](API_DOC.md#get-sleepsclockin)
-* [/sleeps/clockout (GET)](API_DOC.md#get-sleepsclockout)
+* [/sleeps/:id/clockout (GET)](API_DOC.md#get-sleepsidclockout)
 * [/users (GET)](API_DOC.md#get-users)
 * [/users/:user_id (GET)](API_DOC.md#get-usersid)
-* [/users/:id/last_week_order_sleep_time (GET)](API_DOC.md#get-usersidlastweekordersleeptime)
+* [/users/:id/last_week_order_sleep_time (GET)](API_DOC.md#get-usersidlast_week_order_sleep_time)
 * [/users/:user_id/follows (POST)](API_DOC.md#post-usersidfollows)
 * [/users/:user_id/follows (GET)](API_DOC.md#get-usersidfollows)
 * [/users/:user_id/followers (GET)](API_DOC.md#get-usersidfollowers)
@@ -100,10 +100,17 @@ rails new good-night-api --api-only --skip-bundle
     - use sql `age` to calculate sleep_time
     - remove group by since its not nessary
     - order by sleep_time straight from sql
-    - rspec
+    - rspec for order check
+
+* Change POST /sleeps/clockin & POST /sleeps/:id/clockout
+    - clockin will input clockin time of today
+    - clockout with sleep_id to be more accurate
 
 ## Todo
 - Add time_zone to user.
 - better clockin clockout responses
 - rspec for last_week_sleeps in GET /users
 - calculate sleep_time and save to `sleeps.sleep_time`
+- unsolved cases:
+    + if user sleep at 1am the next day, he will skip one day sleep.
+    + if user clockin and only clockout 2 days after.
