@@ -7,6 +7,15 @@ module ShareExampleHelper
     end
   end
 
+  shared_context :subject_post do
+    let(:params) {}
+    subject do
+      post path, params: params, headers: headers
+      response
+    end
+  end
+
+
   shared_examples :unauthorized do
     context 'with no headers' do
       it { is_expected.to have_http_status(:unauthorized) }

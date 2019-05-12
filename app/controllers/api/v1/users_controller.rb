@@ -14,6 +14,7 @@ class Api::V1::UsersController < ApplicationController
     @follow = @current_user.follows.find_or_initialize_by(to_user: @user)
     error_message("Already followed user_id: #{@user.id}", :unprocessable_entity) unless @follow.new_record?
     @follow.save
+    render status: :created
   end
 
   def follows
