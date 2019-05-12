@@ -106,6 +106,50 @@ rails new good-night-api --api-only --skip-bundle
     - clockin will input clockin time of today
     - clockout with sleep_id to be more accurate
 
+* Add sample frontend screen usage
+
+## Sample of Frontend screen usage of API endpoint
+* login screen:
+    - Input name field and press enter
+        + call GET /auth?name=Trung
+            + save current_user: [id, name, auth] from response to localstorage
+            + Go to current_user dashboard screen
+* My dashboard screen
+    - Display
+        + GET /users/:id with id as param, auth as header from localstorage
+* User list screen
+    - Display
+        + GET /users
+            + each user's followed_by_me_id is null `follow` button else `unfollow`
+    - Click follow button on each users
+        + POST /users/:id/follows with id from corresponding user and header from localstorage
+        + save follow_id from response to localstorage
+    - Click unfollow button on each users 
+        + DELETE /follows/:id with followed_by_me_id from corresponding
+
+* My Follows screen
+    - Display
+        + GET /users/:user_id/follows with id, auth from localstorage
+    - Click on each follows
+        + GET /users/:id with id from corresponding follow.to_user.id
+        + Go to Friend screen
+
+* Friend screen
+    - Display
+        + GET /users/:id with id from corresponding follow.to_user.id
+            + show `last_week_sleeps` with graph x-axis: date, y-axis: sleep_time
+        + GET /users/:id/last_week_order_sleep_time with id from corresponding follow.to_user.id
+            + show list order by sleep_time
+
+* Clockin screen
+    - Display a "Clockin" button
+    - Click on button
+        + POST /sleeps/clockin
+        + save current_clockin_time: [id, checkin_at] from response to localstorage
+        + "Clockin" button change to "Clockout" button
+    - Click on "Clockout" button
+        + POST /sleeps/:id/clockout from localstorage (saved above)
+
 ## Todo
 - Add time_zone to user.
 - better clockin clockout responses
@@ -114,3 +158,5 @@ rails new good-night-api --api-only --skip-bundle
 - unsolved cases:
     + if user sleep at 1am the next day, he will skip one day sleep.
     + if user clockin and only clockout 2 days after.
+
+
