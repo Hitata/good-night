@@ -8,6 +8,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
+    @last_week_sleeps = @user.sleeps.group_by_and_from_date(1.week.ago.beginning_of_day)
   end
 
   def post_follows

@@ -23,7 +23,7 @@ An application that lets you record your sleeping time and share it with you fri
 * [/users/:user_id/follows (POST)](API_DOC.md#post-usersidfollows)
 * [/users/:user_id/follows (GET)](API_DOC.md#get-usersidfollows)
 * [/users/:user_id/followers (GET)](API_DOC.md#get-usersidfollowers)
-* /follows/:follow_id (DELETE)
+* [/follows/:follow_id (DELETE)](API_DOC.md#delete-followsid)
 
 ## Database
 * users :id, :name, :auth
@@ -73,10 +73,22 @@ rails new good-night-api --api-only --skip-bundle
     - add rspec test cases with error message
 
 * Add login with GET /auth
-    - add 2 error cases: no parameter name, user doesnt exists
+    - add rspec 2 error cases: no parameter name, user doesnt exists
 
 * Add GET /sleeps/clockin & GET /sleeps/clockout
-    - add error cases: already checkin or checkout
+    - add rspec error cases: already checkin or checkout
+
+* Add POST&GET /users/:id/follows & GET /users/:id/follower
+    - add rspec
+
+* Add DELETE /follows/:id
+    - add rspec 2 cases: follow_id not found, not allowed operation
+
+* Add Postgre gem and connection
+
+* Add `last_week_sleeps` to GET /users/:id
+    - add fixture 02_sleeps data.
+    - group by for correct database select.
 
 ## Todo
 - Add time_zone to user.
