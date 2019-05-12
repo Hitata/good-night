@@ -13,6 +13,7 @@ An application that lets you record your sleeping time and share it with you fri
 * As a user I can see all user that I'm following.
 * As a user I can see all user that follows me (my followers).
 * As a user I can see my friend's (user I follow) sleep records in past week. [link](API_DOC.md#get-usersid)
+* As a user I can see my friend's sleep records past week order by sleep_time [link](API_DOC.md#get-usersidlastweekordersleeptime)
 
 ## API Endpoints
 * [/auth (GET)](API_DOC.md#get-auth)
@@ -20,6 +21,7 @@ An application that lets you record your sleeping time and share it with you fri
 * [/sleeps/clockout (GET)](API_DOC.md#get-sleepsclockout)
 * [/users (GET)](API_DOC.md#get-users)
 * [/users/:user_id (GET)](API_DOC.md#get-usersid)
+* [/users/:id/last_week_order_sleep_time (GET)](API_DOC.md#get-usersidlastweekordersleeptime)
 * [/users/:user_id/follows (POST)](API_DOC.md#post-usersidfollows)
 * [/users/:user_id/follows (GET)](API_DOC.md#get-usersidfollows)
 * [/users/:user_id/followers (GET)](API_DOC.md#get-usersidfollowers)
@@ -94,7 +96,14 @@ rails new good-night-api --api-only --skip-bundle
     - if clockin_at, clockout_at is not recorded return sleep_time to not show.
     - if a date is not recorded it will still display. Always show 7 days.
 
+* Add GET /users/:id/last_week_order_sleep_time
+    - use sql `age` to calculate sleep_time
+    - remove group by since its not nessary
+    - order by sleep_time straight from sql
+    - rspec
+
 ## Todo
 - Add time_zone to user.
 - better clockin clockout responses
 - rspec for last_week_sleeps in GET /users
+- calculate sleep_time and save to `sleeps.sleep_time`
