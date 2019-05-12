@@ -20,8 +20,10 @@ An application that lets you record your sleeping time and share it with you fri
 * [/sleeps/clockout (GET)](API_DOC.md#get-sleepsclockout)
 * [/users (GET)](API_DOC.md#get-users)
 * [/users/:user_id (GET)](API_DOC.md#get-usersid)
-* /users/:user_id/follows (GET, POST)
-* /users/:user_id/followers (GET)
+* [/users/:user_id/follows (POST)](API_DOC.md#post-usersidfollows)
+* [/users/:user_id/follows (GET)](API_DOC.md#get-usersidfollows)
+* [/users/:user_id/followers (GET)](API_DOC.md#get-usersidfollowers)
+* /users/:user_id/follows (POST)
 * /follows/:follow_id (DELETE)
 
 ## Database

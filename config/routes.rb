@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       get 'auth', to: 'auth#auth'
-      resources :users, only: %i[index show]
+      resources :users, only: %i[index show] do
+        member do
+          get :follows, action: :follows
+          post :follows, action: :post_follows
+          get :followers
+        end
+      end
       resources :sleeps, only: %i[] do
         collection do
           get :clockin

@@ -5,6 +5,9 @@
 * [GET /auth](API_DOC.md#get-auth)
 * [GET /users](API_DOC.md#get-users)
 * [GET /users/:id](API_DOC.md#get-usersid)
+* [POST /users/:user_id/follows](API_DOC.md#post-usersidfollows)
+* [GET /users/:user_id/follows](API_DOC.md#get-usersidfollows)
+* [GET /users/:user_id/followers](API_DOC.md#get-usersidfollowers)
 * [GET /sleeps/clockin](API_DOC.md#get-sleepsclockin)
 * [GET /sleeps/clockout](API_DOC.md#get-sleepsclockout)
 
@@ -105,7 +108,7 @@ Not found ID
 }
 ```
 
-#### GET /sleeps/clockin
+## GET /sleeps/clockin
 ```
 curl -X GET \
   http://localhost:3000/api/v1/sleeps/clockin \
@@ -136,7 +139,7 @@ curl -X GET \
 }
 ```
 
-#### GET /sleeps/clockout
+## GET /sleeps/clockout
 ```
 curl -X GET \
   http://localhost:3000/api/v1/sleeps/clockout \
@@ -164,5 +167,85 @@ curl -X GET \
         "message": "Already clocked out at: 2019-05-12 07:56:59 UTC",
         "status": 422
     }
+}
+```
+
+## POST /users/:id/follows
+```
+```
+
+### Response Successful
+```
+{
+    "data": {
+        "id": 3,
+        "to_user": {
+            "id": 4,
+            "name": "Brian"
+        }
+    }
+}
+```
+
+### Response Error
+```
+{
+    "error": {
+        "message": "Already followed user_id: 4",
+        "status": 422
+    }
+}
+```
+
+## GET /users/:id/follows
+```
+curl -X GET \
+  http://localhost:3000/api/v1/users/2/follows \
+  -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+```
+
+### Response Successful
+```
+{
+    "data": [
+        {
+            "id": 2,
+            "to_user": {
+                "id": 5,
+                "name": "Daniel"
+            }
+        },
+        {
+            "id": 1,
+            "to_user": {
+                "id": 6,
+                "name": "Brock"
+            }
+        }
+    ]
+}
+```
+
+## GET /users/:id/followers
+```
+curl -X GET \
+  http://localhost:3000/api/v1/users/5/followers \
+  -H 'Authorization: Bearer 78eb7a778cd3e070d90d' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+```
+
+### Response Successful
+```
+{
+    "data": [
+        {
+            "id": 2,
+            "from_user": {
+                "id": 2,
+                "name": "Trung"
+            }
+        }
+    ]
 }
 ```
