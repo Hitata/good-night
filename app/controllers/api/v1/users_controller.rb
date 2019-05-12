@@ -8,7 +8,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    @last_week_sleeps = @user.sleeps.group_by_and_from_date(1.week.ago.beginning_of_day)
+    today = Date.current
+    one_week_ago = 1.week.ago(today)
+    @one_week_dates = (one_week_ago..today).map(&:to_s)
+    @last_week_sleeps = sleep_to_hash(@user.sleeps.group_by_and_from_date(one_week_ago))
   end
 
   def post_follows
@@ -29,5 +32,9 @@ class Api::V1::UsersController < ApplicationController
 
   def get_user
     @user = User.find(params[:id])
+  end
+
+  def sleep_to_hash(sleeps)
+    sleeps.map { |sleep| [sleep.date.to_s, sleep] }.to_h
   end
 end

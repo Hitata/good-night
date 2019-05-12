@@ -12,7 +12,7 @@ An application that lets you record your sleeping time and share it with you fri
 * As a user I can click `Follow` on the user that I want to follow.
 * As a user I can see all user that I'm following.
 * As a user I can see all user that follows me (my followers).
-* As a user I can see my friend's (user I follow) sleep records in past week.
+* As a user I can see my friend's (user I follow) sleep records in past week. [link](API_DOC.md#get-usersid)
 
 ## API Endpoints
 * [/auth (GET)](API_DOC.md#get-auth)
@@ -90,6 +90,11 @@ rails new good-night-api --api-only --skip-bundle
     - add fixture 02_sleeps data.
     - group by for correct database select.
 
+* Improve `last_week_sleeps`
+    - if clockin_at, clockout_at is not recorded return sleep_time to not show.
+    - if a date is not recorded it will still display. Always show 7 days.
+
 ## Todo
 - Add time_zone to user.
 - better clockin clockout responses
+- rspec for last_week_sleeps in GET /users

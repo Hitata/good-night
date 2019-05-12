@@ -17,6 +17,7 @@ RSpec.describe 'User API', type: :request do
           expect(data).to include_json(
             id: user.id,
             name: user.name,
+            last_week_sleeps: [],
             created_at: user.created_at.as_json,
             updated_at: user.updated_at.as_json
           )

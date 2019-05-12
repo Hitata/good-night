@@ -92,8 +92,66 @@ curl -X GET \
     "data": {
         "id": 1,
         "name": "Trung",
-        "created_at": "2019-05-04T08:53:44.186Z",
-        "updated_at": "2019-05-04T08:53:44.186Z"
+        "created_at": "2019-05-12T11:50:07.088Z",
+        "updated_at": "2019-05-12T11:50:07.088Z",
+        "last_week_sleeps": [
+            {
+                "id": 8,
+                "date": "2019-05-05",
+                "clockin_at": "2019-05-05T19:59:59.999Z",
+                "clockout_at": "2019-05-05T23:59:59.999Z",
+                "sleep_time": "04:00:00"
+            },
+            {
+                "id": 9,
+                "date": "2019-05-06",
+                "clockin_at": "2019-05-06T23:59:59.999Z",
+                "clockout_at": "2019-05-07T06:59:59.999Z",
+                "sleep_time": "07:00:00"
+            },
+            {
+                "id": null,
+                "date": "2019-05-07",
+                "clockin_at": null,
+                "clockout_at": null,
+                "sleep_time": null
+            },
+            {
+                "id": 11,
+                "date": "2019-05-08",
+                "clockin_at": "2019-05-08T20:59:59.999Z",
+                "clockout_at": null,
+                "sleep_time": null
+            },
+            {
+                "id": 12,
+                "date": "2019-05-09",
+                "clockin_at": "2019-05-09T19:59:59.999Z",
+                "clockout_at": "2019-05-10T05:59:59.999Z",
+                "sleep_time": "10:00:00"
+            },
+            {
+                "id": 13,
+                "date": "2019-05-10",
+                "clockin_at": "2019-05-10T20:59:59.999Z",
+                "clockout_at": "2019-05-11T00:59:59.999Z",
+                "sleep_time": "04:00:00"
+            },
+            {
+                "id": 14,
+                "date": "2019-05-11",
+                "clockin_at": "2019-05-11T20:59:59.999Z",
+                "clockout_at": "2019-05-11T23:59:59.999Z",
+                "sleep_time": "03:00:00"
+            },
+            {
+                "id": 15,
+                "date": "2019-05-12",
+                "clockin_at": "2019-05-12T19:59:59.999Z",
+                "clockout_at": "2019-05-13T05:59:59.999Z",
+                "sleep_time": "10:00:00"
+            }
+        ]
     }
 }
 ```
